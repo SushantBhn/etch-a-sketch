@@ -27,6 +27,12 @@ const button = document.querySelector("button");
 button.addEventListener("click", () => {
     let gridLength = prompt("Enter the number of squares per side for the new grid:", 16);
 
+    //Limit input gridLength to 100 to prevent performance issues
+    if (gridLength > 100) {
+        alert("The number of squares per side shoild be less than 100!");
+        return;
+    }
+
     //Delete the container div
     const container = document.querySelector(".container");
     document.body.removeChild(container);
@@ -35,7 +41,7 @@ button.addEventListener("click", () => {
     let newContainer = document.createElement("div");
     document.body.appendChild(newContainer);
     newContainer.classList.add("container");
-    
+
     createGrid(gridLength);
     hoverEffect();
 })
