@@ -5,8 +5,9 @@ function createGrid (gridLength = 16) {
     for  (let i = 0; i < gridLength * gridLength; i++) {
         let div = document.createElement("div");
         container.appendChild(div);
+        // Initialize the opacity data attribute
+        div.dataset.opacity = 0;
         // div.style.width =  "calc(100% / gridLength)";
-
     }
 }
 
@@ -18,8 +19,13 @@ function hoverEffect() {
 
     divs.forEach((div) => {
         div.addEventListener("mouseover", () => {
-            // Generate a random color
-            const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+            // Increment the opacity value
+            let currentOpacity = parseFloat(div.dataset.opacity);
+            currentOpacity = Math.min(currentOpacity + 0.1, 1); // Ensure opacity does not exceed 1
+            div.dataset.opacity = currentOpacity;
+
+            // Generate a random color with the updated opacity
+            const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${currentOpacity})`;
             div.style.backgroundColor = randomColor;
         });
     });
