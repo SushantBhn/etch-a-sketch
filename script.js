@@ -18,7 +18,9 @@ function hoverEffect() {
 
     divs.forEach((div) => {
         div.addEventListener("mouseover", () => {
-            div.style.backgroundColor = "red";
+            // Generate a random color
+            const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+            div.style.backgroundColor = randomColor;
         });
     });
 }
@@ -29,7 +31,7 @@ button.addEventListener("click", () => {
 
     //Limit input gridLength to 100 to prevent performance issues
     if (gridLength > 100) {
-        alert("The number of squares per side shoild be less than 100!");
+        alert("The number of squares per side should be less than 100!");
         return;
     }
 
